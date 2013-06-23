@@ -6,3 +6,6 @@ ebin/
 src/*~
 priv/*~
 priv/static/*~
+
+# generated
+priv/*.html

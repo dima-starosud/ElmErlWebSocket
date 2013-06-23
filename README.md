@@ -1,7 +1,7 @@
 Cowboy websocket
 ================
 
-To compile this example you need rebar in your PATH and Elm compiler.
+To compile this example you need rebar and elm in your PATH.
 
 Type the following command:
 ```
