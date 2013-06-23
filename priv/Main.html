@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="UTF-8"><title>Main</title><script type="text/javascript" src="/static/elm-runtime.js"></script><script type="text/javascript">
+Elm.Main = function(elm){
+  var N = Elm.Native, _N = N.Utils(elm), _L = N.List(elm), _E = N.Error(elm), _str = N.JavaScript(elm).toString;
+  var $op = {};
+  var _ = Elm.Text(elm); var Text = _; var hiding={link:1, color:1, height:1}; for(var k in _){if(k in hiding)continue;eval('var '+k+'=_["'+k+'"]')}
+  var _ = Elm.Prelude(elm); var Prelude = _; var hiding={}; for(var k in _){if(k in hiding)continue;eval('var '+k+'=_["'+k+'"]')}
+  var _ = Elm.Signal(elm); var Signal = _; var hiding={}; for(var k in _){if(k in hiding)continue;eval('var '+k+'=_["'+k+'"]')}
+  var _ = Elm.List(elm); var List = _; var hiding={}; for(var k in _){if(k in hiding)continue;eval('var '+k+'=_["'+k+'"]')}
+  var _ = Elm.Maybe(elm); var Maybe = _; var hiding={}; for(var k in _){if(k in hiding)continue;eval('var '+k+'=_["'+k+'"]')}
+  var _ = Elm.Time(elm); var Time = _; var hiding={}; for(var k in _){if(k in hiding)continue;eval('var '+k+'=_["'+k+'"]')}
+  var _ = Elm.Graphics.Element(elm); var Graphics = Graphics||{};Graphics.Element = _; var hiding={}; for(var k in _){if(k in hiding)continue;eval('var '+k+'=_["'+k+'"]')}
+  var _ = Elm.Graphics.Collage(elm); var Graphics = Graphics||{};Graphics.Collage = _; var hiding={}; for(var k in _){if(k in hiding)continue;eval('var '+k+'=_["'+k+'"]')}
+  var _ = Elm.WebSocket(elm); var WebSocket = _;
+  var _ = Elm.Color(elm); var Color = _;
+  var _ = Elm.Window(elm); var Window = _;
+  var GI = Elm.Graphics.Input(elm);
+  var GE = Elm.Graphics.Element(elm);
+  var bordered_9 = function(width_23){
+    return function(x){
+      return A2(color, Color.white, A4(container, width_23, cITEM_HEIGHT_0, middle, A2(color, Color.black, A4(container, (width_23-2), (cITEM_HEIGHT_0-2), middle, A2(color, Color.white, A4(container, (width_23-10), (cITEM_HEIGHT_0-10), middle, A2(GE.width, (width_23-10), A2(GE.height, (cITEM_HEIGHT_0-10), x))))))));};};
+  var split$_12 = function(sep_26){
+    return function(x){
+      return reverse(tail(reverse(A2(split, sep_26, x))));};};
+  var cITEM_HEIGHT_0 = 40;
+  var cSIG_WND_WIDTH_1 = A2(lift,min(400),Window.width);
+  var ws_2 = WebSocket.connect(_str('ws://localhost:8080/websocket'));
+  var _13000_3 = GI.field(_str(''));
+  var newItemField_4 = function(){ 
+  switch (_13000_3.ctor) {
+    case 'Tuple2':
+      return _13000_3._0;
+  }_E.Case('Line 13, Column 31') }();
+  var newItemData_5 = function(){ 
+  switch (_13000_3.ctor) {
+    case 'Tuple2':
+      return _13000_3._1;
+  }_E.Case('Line 13, Column 31') }();
+  var _14000_6 = GI.button(_str('Add Item'));
+  var newItemButton_7 = function(){ 
+  switch (_14000_6.ctor) {
+    case 'Tuple2':
+      return _14000_6._0;
+  }_E.Case('Line 14, Column 35') }();
+  var newItemPressed_8 = function(){ 
+  switch (_14000_6.ctor) {
+    case 'Tuple2':
+      return _14000_6._1;
+  }_E.Case('Line 14, Column 35') }();
+  var filteredData_10 = A2(sampleOn, newItemPressed_8, newItemData_5);
+  var inputs_11 = A3(lift2,F2(function(f,x){return f(x)}),A2(lift,beside,A3(lift2,F2(function(f,x){return f(x)}),A2(lift,function(x){
+    return bordered_9(A2(div, (3*x), 4));},cSIG_WND_WIDTH_1),newItemField_4)),A3(lift2,F2(function(f,x){return f(x)}),A2(lift,function(x){
+    return GE.width(A2(div, x, 4));},cSIG_WND_WIDTH_1),constant(newItemButton_7)));
+  var outputs_13 = A2(lift,flow(down),A3(lift2,F2(function(f,x){return f(x)}),A2(lift,function(x){
+    return map(bordered_9(x));},cSIG_WND_WIDTH_1),A2(lift,function(x){
+    return A2(map, Text.plainText, A2(split$_12, _str('\n'), x));},ws_2(filteredData_10))));
+  var main_14 = A3(lift2,F2(function(f,x){return f(x)}),A3(lift2,F2(function(f,x){return f(x)}),A3(lift2,F2(function(f,x){return f(x)}),A2(lift,container,Window.width),Window.height),constant(midTop)),A3(lift2,F2(function(f,x){return f(x)}),A2(lift,above,inputs_11),outputs_13));
+  elm.Native = elm.Native||{};
+  var _ = elm.Native.Main||{};
+  _.$op = {};
+  _.cITEM_HEIGHT = cITEM_HEIGHT_0;
+  _.cSIG_WND_WIDTH = cSIG_WND_WIDTH_1;
+  _.ws = ws_2;
+  _._13000 = _13000_3;
+  _.newItemField = newItemField_4;
+  _.newItemData = newItemData_5;
+  _._14000 = _14000_6;
+  _.newItemButton = newItemButton_7;
+  _.newItemPressed = newItemPressed_8;
+  _.bordered = bordered_9;
+  _.filteredData = filteredData_10;
+  _.inputs = inputs_11;
+  _.split$ = split$_12;
+  _.outputs = outputs_13;
+  _.main = main_14
+  return elm.Main = _;
+  };</script></head><body><script type="text/javascript">Elm.fullscreen(Elm.Main)</script><noscript><p>ws://localhost:8080/websocket</p><p></p><p>Add Item</p><p>
+</p></noscript></body></html>

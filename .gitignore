@@ -1,0 +1,8 @@
+deps/
+ebin/
+
+# temporaries
+*~
+src/*~
+priv/*~
+priv/static/*~
