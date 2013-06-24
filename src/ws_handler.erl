@@ -18,7 +18,7 @@ websocket_handle({text, Msg}, Req, State) ->
 		   <<>> -> State;
 		   Msg -> [Msg, << "\n" >> |State]
 	       end,
-    io:format("State: ~p; Msg: ~p; NewState: ~p~n", [State, Msg, NewState]),
+    io:format("Msg: ~p; State: ~p; NewState: ~p~n", [Msg, State, NewState]),
     {reply, {text, NewState}, Req, NewState};
 websocket_handle(_Data, Req, State) ->
     {ok, Req, State}.

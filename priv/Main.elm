@@ -20,8 +20,12 @@ bordered width =
     color Color.white . container (width - 10) (cITEM_HEIGHT - 10) middle .
     GE.width (width - 10) . GE.height (cITEM_HEIGHT - 10)
 
+null l = case l of
+           [] -> True
+           _::_ -> False
+
 filteredData : Signal String
-filteredData = newItemPressed `sampleOn` newItemData
+filteredData = dropIf null "" $ newItemPressed `sampleOn` newItemData
 
 inputs : Signal Element
 inputs = beside <~
