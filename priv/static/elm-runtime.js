@@ -1458,11 +1458,29 @@ Elm.Native.WebSocket = function(elm) {
       ready = true;
     };
     ws.onmessage = function(event) {
-      elm.notify(incoming.id, JS.toString(event.data));
+      var data = event.data;
+      if (typeof data === "string") {
+        elm.notify(incoming.id, JS.toString(data));
+      } else if (data.constructor === Blob) {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+          elm.notify(incoming.id, JS.toString(event.target.result));
+        };
+        reader.readAsBinaryString(data);
+      } else {
+        throw new Error("Elm.WebSocket cannot receive " + data.constructor + ".");
+      }
     };
     
     function send(msg) {
       var s = JS.fromString(msg);
+      if (! /^[\x00-\x7F]*$/.test(s)) {
+          var bytes = new Uint8Array(s.length);
+          for (var i = 0; i < s.length; i++) {
+            bytes[i] = s.charCodeAt(i);
+          }
+          s = new Blob([bytes]);
+      }
       ready ? ws.send(s) : pending.push(s);
     }
     
