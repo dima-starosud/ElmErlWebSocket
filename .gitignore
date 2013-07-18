@@ -3,9 +3,7 @@ ebin/
 
 # temporaries
 *~
-src/*~
-priv/*~
-priv/static/*~
+*#
 
 # binaries
 *beam
