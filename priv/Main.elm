@@ -25,7 +25,7 @@ null l = case l of
            _::_ -> False
 
 filteredData : Signal String
-filteredData = dropIf null "" $ newItemPressed `sampleOn` newItemData
+filteredData = dropIf null "" <| newItemPressed `sampleOn` newItemData
 
 inputs : Signal Element
 inputs = beside <~
