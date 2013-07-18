@@ -7,5 +7,9 @@ src/*~
 priv/*~
 priv/static/*~
 
+# binaries
+*beam
+*elmo
+
 # generated
 priv/*.html
